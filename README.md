@@ -1,7 +1,7 @@
-# pridenecklace
+# pride_necklace
 A Neopixel necklace to celebrate LGBT pride.
 
-![Rainbow Flag Necklace](https://github.com/brightcolorfulflickers/pridenecklace/blob/master/photos/necklace front on small.jpg)
+![Rainbow Flag Necklace](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/necklace front on small.jpg)
 
 ## Overview
 I made this necklace to celebrate LGBT pride month. It's based on [this Adafruit tutorial](https://learn.adafruit.com/gemma-hoop-earrings/overview), but I modified it heavily. It adds a button so that the user can cycle through different animations. Full instructions are below.
@@ -55,10 +55,10 @@ If you want, you can shorten the battery wires. Cut, re-solder, and heat shrink.
 
 ## Photos
 
-![Rainbow Flag Necklace](https://github.com/brightcolorfulflickers/pridenecklace/blob/master/photos/necklace front on.jpg)
-![Rainbow Flag Necklace (off)](https://github.com/brightcolorfulflickers/pridenecklace/blob/master/photos/necklace front off.jpg)
-![Rainbow Flag Necklace (animation)](https://github.com/brightcolorfulflickers/pridenecklace/blob/master/photos/rainbow chase.jpg)
-![Rainbow Flag Necklace (back)](https://github.com/brightcolorfulflickers/pridenecklace/blob/master/photos/rainbow chase.jpg)
+![Rainbow Flag Necklace](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/necklace front on.jpg)
+![Rainbow Flag Necklace (off)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/necklace front off.jpg)
+![Rainbow Flag Necklace (animation)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/rainbow chase.jpg)
+![Rainbow Flag Necklace (back)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/rainbow chase.jpg)
 
 For more process photos, see my [tumblr](http://brightcolorfulflickers.tumblr.com/tagged/pride-necklace).
 
