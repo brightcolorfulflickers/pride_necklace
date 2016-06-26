@@ -6,6 +6,8 @@ A Neopixel necklace to celebrate LGBT pride.
 ## Overview
 I made this necklace to celebrate LGBT pride month. It's based on [this Adafruit tutorial](https://learn.adafruit.com/gemma-hoop-earrings/overview), but I modified it heavily. It adds a button so that the user can cycle through different animations. Full instructions are below.
 
+Thank you to Adafruit for posting this project on their [blog](https://blog.adafruit.com/2016/06/26/a-neopixel-necklace-to-celebrate-lgbt-pride-her_nerdiness-pride2016/)!
+
 ## Tools Required
 
 I used a laser cutter, a 3d printer, and a soldering iron.
@@ -29,7 +31,8 @@ Other parts:
 
 ## Instructions
 
-For the electronic part, mostly follow the Adafruit tutorial linked above. However, I made the following modifications.
+For the electronic part, mostly follow the Adafruit tutorial linked above. However, I made the following modifications. Be sure to carefully measure out wire lengths so that there is a little slack on the wires but not too much.
+- Solder D1 to Neopixel data in.
 - Solder the button between 3V and D0.
 - Solder the resistor between D0 and D2.
 - Be sure to solder to the 5V on the Neopixel ring right under the "Power 5V DC" label and the ground to the ground right under the "Ground" label.
@@ -39,6 +42,7 @@ Upload the code: pridenecklace.ino. This version has the rainbow flag, but you c
 Laser cut the following parts:
 - Cut "necklace back.svg" on the 1/8" clear acrylic.
 - Cut "necklace front.svg" -- one copy of the circle on the 1/8" frosted acrylic, and two copies of the circle on the 3/16" clear acrylic.
+
 These files were created in Inkscape. I simply used the dimensions provided by Adafruit, if you would like to re-create them.
 
 3D print the 150 mAh battery case. I just did a "fast print" in Cura to generate my gcode.
