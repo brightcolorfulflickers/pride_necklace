@@ -55,10 +55,12 @@ If you want, you can shorten the battery wires. Cut, re-solder, and heat shrink.
 
 ## Photos
 
+Don't mind the weird lines! They're an artifact of the Neopixel refresh rate.
+
 ![Rainbow Flag Necklace](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/necklace front on.jpg)
 ![Rainbow Flag Necklace (off)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/necklace front off.jpg)
-![Rainbow Flag Necklace (animation)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/rainbow chase.jpg)
-![Rainbow Flag Necklace (back)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/rainbow chase.jpg)
+![Rainbow Flag Necklace (animation)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/rainbowchase.jpg)
+![Rainbow Flag Necklace (back)](https://github.com/brightcolorfulflickers/pride_necklace/blob/master/photos/necklace back.jpg)
 
 For more process photos, see my [tumblr](http://brightcolorfulflickers.tumblr.com/tagged/pride-necklace).
 
