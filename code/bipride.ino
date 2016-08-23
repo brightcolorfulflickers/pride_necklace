@@ -69,6 +69,38 @@ void loop() {
   else if (modeCount % numModes == 2) {
     biColorChase(100);
   }
+  else if (modeCount % numModes == 3) { //random mode!
+    
+    int randMode = random(numModes-1); // choose a random mode
+    long randTime = random(3000, 15000); // keep for a random time from 3-15 seconds
+    long startMode = millis();
+    if (randMode == 0) {
+      while ((unsigned long)(millis() - startMode) < randTime) {   
+        biFlagDisplay(); 
+        if (intDelay()) {
+          return;  
+        }
+      }
+    }
+    else if (randMode == 1) {
+      while ((unsigned long)(millis() - startMode) < randTime) {   
+        biFlagRotate(200); 
+        if (intDelay()) {
+          return;  
+        }
+      }       
+    }
+    else if (randMode == 2) {
+      while ((unsigned long)(millis() - startMode) < randTime) {   
+        biColorChase(100);
+        if (intDelay()) {
+          return;  
+        }
+      }         
+
+    }
+  }
+  
 }
 
 bool intDelay() {
@@ -108,14 +140,6 @@ void biFlagRotate(uint8_t wait) {
     //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-      /*if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
-        int buttonRead = digitalRead(BUTTON);
-        lastButtonCheck = millis();
-        if (buttonRead == HIGH) {
-          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
-          return; //return to the main loop to change the mode
-        }
-      }*/
       if (intDelay()) {
         return;  
       }
@@ -137,20 +161,10 @@ void biColorChase(uint8_t wait) {
         //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-      /*if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
-        int buttonRead = digitalRead(BUTTON);
-        lastButtonCheck = millis();
-        if (buttonRead == HIGH) {
-          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
-          return; //return to the main loop to change the mode
-        }
-      }*/
       if (intDelay()) {
         return;  
       }
     }
-    //not using delays
-    //delay(wait);
   }
 }
 
