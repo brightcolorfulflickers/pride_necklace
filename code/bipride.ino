@@ -8,10 +8,10 @@
 #define GNDPIN 2
 #define NUM_LEDS 16
 int modeCount = 0;
-const byte numModes = 3;
+const byte numModes = 4;
 
-long lastButtonCheck = 0;
-const byte buttonDebounceTime = 200; //200 ms
+unsigned long lastButtonCheck = 0;
+const unsigned long buttonDebounceTime = 200; //200 ms
 bool firstUpdate = false;
 
 byte buttonFlag;//this flag is used to communicate to the main loop that a new value was read.
@@ -69,8 +69,6 @@ void loop() {
   else if (modeCount % numModes == 2) {
     biColorChase(100);
   }
-   
-
 }
 
 bool intDelay() {
@@ -81,15 +79,16 @@ bool intDelay() {
         buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
         return true; //return to the main loop to change the mode
       }
+    else {
+      return false;
     }
+  }
 }
 
 /* BI PRIDE */
 
 void biFlagDisplay() {
   uint8_t i;
-
-  //uint32_t biFlag[NUM_LEDS] = {bi_pink, bi_pink, bi_pink, bi_pink, bi_pink, bi_pink, bi_purple, bi_purple, bi_blue, bi_blue, bi_blue, bi_blue, bi_blue, bi_blue, bi_purple, bi_purple};
 
   for(i=0; i<strip.numPixels(); i++) {
     strip.setPixelColor(i, biFlag[i]);
@@ -101,8 +100,6 @@ void biFlagRotate(uint8_t wait) {
   uint8_t i;
   uint8_t j;
   
-  //uint32_t biFlag[NUM_LEDS] = {bi_pink, bi_pink, bi_pink, bi_pink, bi_pink, bi_pink, bi_purple, bi_purple, bi_blue, bi_blue, bi_blue, bi_blue, bi_blue, bi_blue, bi_purple, bi_purple};
-
   for (j=0; j<strip.numPixels(); j++) {
     for(i=0; i<strip.numPixels(); i++) {
       strip.setPixelColor(i, biFlag[(i+j) % NUM_LEDS]);
@@ -111,20 +108,18 @@ void biFlagRotate(uint8_t wait) {
     //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-//      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
-//        int buttonRead = digitalRead(BUTTON);
-//        lastButtonCheck = millis();
-//        if (buttonRead == HIGH) {
-//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
-//          return; //return to the main loop to change the mode
-//        }
-//      }
+      /*if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
+        int buttonRead = digitalRead(BUTTON);
+        lastButtonCheck = millis();
+        if (buttonRead == HIGH) {
+          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
+          return; //return to the main loop to change the mode
+        }
+      }*/
       if (intDelay()) {
         return;  
       }
     }
-    //not using delays
-//    delay(wait);
   }
 }
 
@@ -142,14 +137,14 @@ void biColorChase(uint8_t wait) {
         //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-//      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
-//        int buttonRead = digitalRead(BUTTON);
-//        lastButtonCheck = millis();
-//        if (buttonRead == HIGH) {
-//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
-//          return; //return to the main loop to change the mode
-//        }
-//      }
+      /*if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
+        int buttonRead = digitalRead(BUTTON);
+        lastButtonCheck = millis();
+        if (buttonRead == HIGH) {
+          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
+          return; //return to the main loop to change the mode
+        }
+      }*/
       if (intDelay()) {
         return;  
       }
