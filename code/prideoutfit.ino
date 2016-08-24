@@ -1,13 +1,3 @@
-/*
- * Bi + Trans Pride Outfit
- * by brightcolorfulflickers
- * June 2016
- * 
- * github.com/brightcolorfulflickers
- * brightcolorfulflickers.tumblr.com
- * instagram.com/brightcolorfulflickers
- */
-
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
   #include <avr/power.h>
@@ -21,7 +11,7 @@ int modeCount = 0;
 const byte numModes = 6;
 
 long lastButtonCheck = 0;
-const byte buttonDebounceTime = 200; //200 ms
+const long buttonDebounceTime = 200; //200 ms
 bool firstUpdate = false;
 
 byte buttonFlag;//this flag is used to communicate to the main loop that a new value was read.
@@ -30,7 +20,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ
 
 // Colors!
 const uint32_t bi_blue = 255;// = Wheel(170);
-const uint32_t bi_pink = 13762605;// = Wheel(240);
+const uint32_t bi_pink = 13762605;// = Wheel(240); 
 const uint32_t bi_purple = 4522170;// = Wheel(193);
 
 const uint32_t trans_blue = 15555;// = Wheel(150); //HSV: 197,64,98
@@ -58,10 +48,10 @@ void loop() {
   if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
     int buttonRead = digitalRead(BUTTON);
     if (buttonRead == HIGH) {
-      buttonFlag = 1; //set the flag that tells the loop() that a button was pushed
+      buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
     }
     lastButtonCheck = millis();
-  }
+  }  
 
   //if button has been pressed, update the display (or if it's never been set)
   if (buttonFlag == 1 || firstUpdate == false) {
@@ -72,12 +62,12 @@ void loop() {
     else { // otherwise, increment mode counter as usual
       modeCount++;
     }
-
+   
   }
   if (modeCount % numModes == 0) {
     transFlagDisplay();
-  }
-  else if (modeCount % numModes == 1) {
+  } 
+  else if (modeCount % numModes == 1) {    
     transFlagRotate(200);
   }
   else if (modeCount % numModes == 2) {
@@ -92,7 +82,7 @@ void loop() {
   else if (modeCount % numModes == 5) {
     biColorChase(100);
   }
-
+   
 
 }
 
@@ -101,8 +91,11 @@ bool intDelay() {
     int buttonRead = digitalRead(BUTTON);
     lastButtonCheck = millis();
     if (buttonRead == HIGH) {
-        buttonFlag = 1; //set the flag that tells the loop() that a button was pushed
+        buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
         return true; //return to the main loop to change the mode
+      }
+    else {
+        return false;
       }
     }
 }
@@ -111,7 +104,7 @@ bool intDelay() {
 
 void transFlagDisplay() {
   uint8_t i;
-
+  
   //uint32_t transFlag[NUM_LEDS] = {trans_blue, trans_blue, trans_blue, trans_pink, trans_pink, white, trans_pink, trans_pink, trans_blue, trans_blue, trans_blue, trans_pink, trans_pink, white, trans_pink, trans_pink};
 
   for(i=0; i<strip.numPixels(); i++) {
@@ -123,7 +116,7 @@ void transFlagDisplay() {
 void transFlagRotate(uint8_t wait) {
   uint16_t i;
   uint16_t j;
-
+  
   //uint32_t transFlag[NUM_LEDS] = {trans_blue, trans_blue, trans_blue, trans_pink, trans_pink, white, trans_pink, trans_pink, trans_blue, trans_blue, trans_blue, trans_pink, trans_pink, white, trans_pink, trans_pink};
 
   for (j=0; j<strip.numPixels(); j++) {
@@ -131,11 +124,11 @@ void transFlagRotate(uint8_t wait) {
       strip.setPixelColor(i, transFlag[(i+j) % NUM_LEDS]);
     }
     strip.show();
-    //we need to check the button in here because of the delay
+    //we need to check the button in here because of the delay 
     long startWait = millis();
-    while ((unsigned long)(millis() - startWait) < wait) {
+    while ((unsigned long)(millis() - startWait) < wait) {    
       if (intDelay()) {
-        return;
+        return;  
       }
     }
     //not using delays
@@ -146,7 +139,7 @@ void transFlagRotate(uint8_t wait) {
 void transColorChase(uint8_t wait) {
   uint8_t i;
   uint8_t j;
-
+  
   //uint32_t transChase[NUM_LEDS] = {trans_blue, trans_pink, white, black, black, black, black, black, trans_blue, trans_pink, white, black, black, black, black, black};
 
   for (j=0; j<strip.numPixels(); j++) {
@@ -154,19 +147,19 @@ void transColorChase(uint8_t wait) {
       strip.setPixelColor(i, transChase[(i+j) % NUM_LEDS]);
     }
     strip.show();
-        //we need to check the button in here because of the delay
+        //we need to check the button in here because of the delay 
     long startWait = millis();
-    while ((unsigned long)(millis() - startWait) < wait) {
+    while ((unsigned long)(millis() - startWait) < wait) {    
 //      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
 //        int buttonRead = digitalRead(BUTTON);
 //        lastButtonCheck = millis();
 //        if (buttonRead == HIGH) {
-//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed
+//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
 //          return; //return to the main loop to change the mode
 //        }
 //      }
       if (intDelay()) {
-        return;
+        return;  
       }
     }
     //not using delays
@@ -190,7 +183,7 @@ void biFlagDisplay() {
 void biFlagRotate(uint8_t wait) {
   uint8_t i;
   uint8_t j;
-
+  
   //uint32_t biFlag[NUM_LEDS] = {bi_pink, bi_pink, bi_pink, bi_pink, bi_pink, bi_pink, bi_purple, bi_purple, bi_blue, bi_blue, bi_blue, bi_blue, bi_blue, bi_blue, bi_purple, bi_purple};
 
   for (j=0; j<strip.numPixels(); j++) {
@@ -198,19 +191,19 @@ void biFlagRotate(uint8_t wait) {
       strip.setPixelColor(i, biFlag[(i+j) % NUM_LEDS]);
     }
     strip.show();
-    //we need to check the button in here because of the delay
+    //we need to check the button in here because of the delay 
     long startWait = millis();
-    while ((unsigned long)(millis() - startWait) < wait) {
+    while ((unsigned long)(millis() - startWait) < wait) {    
 //      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
 //        int buttonRead = digitalRead(BUTTON);
 //        lastButtonCheck = millis();
 //        if (buttonRead == HIGH) {
-//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed
+//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
 //          return; //return to the main loop to change the mode
 //        }
 //      }
       if (intDelay()) {
-        return;
+        return;  
       }
     }
     //not using delays
@@ -221,7 +214,7 @@ void biFlagRotate(uint8_t wait) {
 void biColorChase(uint8_t wait) {
   uint8_t i;
   uint8_t j;
-
+  
   //uint32_t biChase[NUM_LEDS] = {bi_pink, bi_purple, bi_blue, black, black, black, black, black, bi_pink, bi_purple, bi_blue, black, black, black, black, black};
 
   for (j=0; j<strip.numPixels(); j++) {
@@ -229,19 +222,19 @@ void biColorChase(uint8_t wait) {
       strip.setPixelColor(i, biChase[(i+j) % NUM_LEDS]);
     }
     strip.show();
-        //we need to check the button in here because of the delay
+        //we need to check the button in here because of the delay 
     long startWait = millis();
-    while ((unsigned long)(millis() - startWait) < wait) {
+    while ((unsigned long)(millis() - startWait) < wait) {    
 //      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
 //        int buttonRead = digitalRead(BUTTON);
 //        lastButtonCheck = millis();
 //        if (buttonRead == HIGH) {
-//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed
+//          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
 //          return; //return to the main loop to change the mode
 //        }
 //      }
       if (intDelay()) {
-        return;
+        return;  
       }
     }
     //not using delays

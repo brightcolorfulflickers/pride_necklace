@@ -57,6 +57,25 @@ void loop() {
     }
     else { // otherwise, increment mode counter as usual
       modeCount++;
+      //Debug -- See which mode you're in when you click
+      uint32_t tempcolor;
+      if (modeCount % numModes == 0) {
+        tempcolor = strip.Color(255,0,0);
+      }
+      else if (modeCount % numModes == 1) {
+        tempcolor = strip.Color(0,255,0);
+      }
+      else if (modeCount % numModes == 2) {
+        tempcolor = strip.Color(0,0,255);
+      }
+      else if (modeCount % numModes == 3) {
+        tempcolor = strip.Color(128,128,0);
+      }
+      for(uint8_t i=0; i<strip.numPixels(); i++) {
+        strip.setPixelColor(i, tempcolor);
+      }
+      strip.show(); 
+      delay(250);
     }
    
   }
@@ -85,16 +104,16 @@ void loop() {
     else if (randMode == 1) {
       while ((unsigned long)(millis() - startMode) < randTime) {   
         biFlagRotate(200); 
-        if (intDelay()) {
-          return;  
+        if (buttonFlag == 1) {
+          return;
         }
       }       
     }
     else if (randMode == 2) {
       while ((unsigned long)(millis() - startMode) < randTime) {   
         biColorChase(100);
-        if (intDelay()) {
-          return;  
+        if (buttonFlag == 1) {
+          return;
         }
       }         
 
