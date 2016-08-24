@@ -1,3 +1,13 @@
+/*
+ * Bi + Trans Pride Outfit
+ * by brightcolorfulflickers
+ * August 2016
+ * 
+ * github.com/brightcolorfulflickers
+ * brightcolorfulflickers.tumblr.com
+ * instagram.com/brightcolorfulflickers
+ */
+ 
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
   #include <avr/power.h>
