@@ -41,11 +41,11 @@ Upload the code: pridenecklace.ino. This version has the rainbow flag, but you c
 
 Laser cut the following parts:
 - Cut "necklace back.svg" on the 1/8" clear acrylic.
-- Cut "necklace front.svg" -- one copy of the circle on the 1/8" frosted acrylic, and two copies of the circle on the 3/16" clear acrylic.
+- Cut "necklace front.svg" -- one copy of the circle on the 1/8" frosted acrylic, and two copies of the circle on the 3/16" clear acrylic. (Or you can 3D print a diffuser instead - see below.)
 
 These files were created in Inkscape. I simply used the dimensions provided by Adafruit, if you would like to re-create them.
 
-3D print the 150 mAh battery case. I just did a "fast print" in Cura to generate my gcode.
+3D print the 150 mAh battery case. I just did a "fast print" in Cura to generate my gcode. You can also 3D print a diffuser cover for the Neopixel ring. I created the files in OpenSCAD and they're parametric, so you can edit them if you want. V1 was my original print but the wire slots are too small and there's not enough room for the battery wires at the bottom, so V2 should be an improvement. Also, you don't have to glue it on - it should just press fit on.
 
 Use the E6000 to glue the small round piece to the back of the Gemma. Glue the ring with cutouts for the solder joints to the back of the Neopixel ring. Allow that to set and dry overnight.
 
