@@ -132,6 +132,7 @@ void loop() {
   
 }
 
+// This function appears to have stopped working. Unclear why.
 bool intDelay() {
   if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
     int buttonRead = digitalRead(BUTTON);
@@ -169,8 +170,16 @@ void biFlagRotate(uint8_t wait) {
     //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-      if (intDelay()) {
-        return;  
+//      if (intDelay()) {
+//        return;  
+//      }
+      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
+        int buttonRead = digitalRead(BUTTON);
+        lastButtonCheck = millis();
+        if (buttonRead == HIGH) {
+          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
+          return; //return to the main loop to change the mode
+        }
       }
     }
   }
@@ -190,8 +199,16 @@ void biColorChase(uint8_t wait) {
         //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-      if (intDelay()) {
-        return;  
+//      if (intDelay()) {
+//        return;  
+//      }
+      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
+        int buttonRead = digitalRead(BUTTON);
+        lastButtonCheck = millis();
+        if (buttonRead == HIGH) {
+          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
+          return; //return to the main loop to change the mode
+        }
       }
     }
   }

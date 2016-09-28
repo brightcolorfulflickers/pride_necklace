@@ -1,5 +1,5 @@
 /*
- * Pan Pride Necklace
+ * Bi Pride Necklace
  * by brightcolorfulflickers
  * August 2016
  * 
@@ -38,7 +38,7 @@ const uint32_t black = 0;
 
 //Flags!
 const uint32_t panFlag[NUM_LEDS] = {pan_pink, pan_pink, pan_pink, pan_pink, pan_yellow, pan_yellow, pan_blue, pan_blue, pan_blue, pan_blue, pan_blue, pan_blue, pan_yellow, pan_yellow, pan_pink, pan_pink};
-const uint32_t biChase[NUM_LEDS] = {pan_pink, pan_yellow, pan_blue, black, black, black, black, black, pan_pink, pan_yellow, pan_blue, black, black, black, black, black};
+const uint32_t panChase[NUM_LEDS] = {pan_pink, pan_yellow, pan_blue, black, black, black, black, black, pan_pink, pan_yellow, pan_blue, black, black, black, black, black};
 
 void setup() {
   strip.begin();
@@ -90,13 +90,13 @@ void loop() {
    
   }
   if (modeCount % numModes == 0) {
-    panFlagDisplay();
+    FlagDisplay();
   }
   else if (modeCount % numModes == 1) {
-    panFlagRotate(200);
+    FlagRotate(200);
   }
   else if (modeCount % numModes == 2) {
-    biColorChase(100);
+    ColorChase(100);
   }
   else if (modeCount % numModes == 3) { //random mode!
     
@@ -105,7 +105,7 @@ void loop() {
     long startMode = millis();
     if (randMode == 0) {
       while ((unsigned long)(millis() - startMode) < randTime) {   
-        panFlagDisplay(); 
+        FlagDisplay(); 
         if (intDelay()) {
           return;  
         }
@@ -113,7 +113,7 @@ void loop() {
     }
     else if (randMode == 1) {
       while ((unsigned long)(millis() - startMode) < randTime) {   
-        panFlagRotate(200); 
+        FlagRotate(200); 
         if (buttonFlag == 1) {
           return;
         }
@@ -121,7 +121,7 @@ void loop() {
     }
     else if (randMode == 2) {
       while ((unsigned long)(millis() - startMode) < randTime) {   
-        biColorChase(100);
+        ColorChase(100);
         if (buttonFlag == 1) {
           return;
         }
@@ -132,6 +132,7 @@ void loop() {
   
 }
 
+// This function appears to have stopped working. Unclear why.
 bool intDelay() {
   if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
     int buttonRead = digitalRead(BUTTON);
@@ -146,9 +147,9 @@ bool intDelay() {
   }
 }
 
-/* BI PRIDE */
+/* PAN PRIDE */
 
-void panFlagDisplay() {
+void FlagDisplay() {
   uint8_t i;
 
   for(i=0; i<strip.numPixels(); i++) {
@@ -157,7 +158,7 @@ void panFlagDisplay() {
   strip.show();
 }
 
-void panFlagRotate(uint8_t wait) {
+void FlagRotate(uint8_t wait) {
   uint8_t i;
   uint8_t j;
   
@@ -169,29 +170,43 @@ void panFlagRotate(uint8_t wait) {
     //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-      if (intDelay()) {
-        return;  
+//      if (intDelay()) {
+//        return;  
+//      }
+      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
+        int buttonRead = digitalRead(BUTTON);
+        lastButtonCheck = millis();
+        if (buttonRead == HIGH) {
+          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
+          return; //return to the main loop to change the mode
+        }
       }
     }
   }
 }
 
-void biColorChase(uint8_t wait) {
+void ColorChase(uint8_t wait) {
   uint8_t i;
   uint8_t j;
   
-  //uint32_t biChase[NUM_LEDS] = {pan_pink, pan_yellow, pan_blue, black, black, black, black, black, pan_pink, pan_yellow, pan_blue, black, black, black, black, black};
-
   for (j=0; j<strip.numPixels(); j++) {
     for(i=0; i<strip.numPixels(); i++) {
-      strip.setPixelColor(i, biChase[(i+j) % NUM_LEDS]);
+      strip.setPixelColor(i, panChase[(i+j) % NUM_LEDS]);
     }
     strip.show();
         //we need to check the button in here because of the delay 
     long startWait = millis();
     while ((unsigned long)(millis() - startWait) < wait) {    
-      if (intDelay()) {
-        return;  
+//      if (intDelay()) {
+//        return;  
+//      }
+      if ((unsigned long)(millis() - lastButtonCheck) > buttonDebounceTime) {
+        int buttonRead = digitalRead(BUTTON);
+        lastButtonCheck = millis();
+        if (buttonRead == HIGH) {
+          buttonFlag = 1; //set the flag that tells the loop() that a button was pushed 
+          return; //return to the main loop to change the mode
+        }
       }
     }
   }
